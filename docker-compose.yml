@@ -38,9 +38,8 @@ services:
   cron:
     image: nextcloud:25-apache
     restart: always
-    volumes:
-      - ${my_nextcloud_root}:/var/www/html
-      - ${my_nextcloud_data}:/var/www/html/data
+    volumes_from:
+      - app
     entrypoint: /cron.sh
     depends_on:
       - db

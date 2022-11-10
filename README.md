@@ -35,6 +35,48 @@ sudo mv docker-compose /usr/local/bin/
 docker-compose version
 ```
 
+## Make useful preview sizes:
+
+```sh
+docker exec -u 33 -it pi-services-app-1 /bin/bash
+
+# Then run these in the terminal:
+# Source: https://web.archive.org/web/20220531110907/https://ownyourbits.com/2019/06/29/understanding-and-improving-nextcloud-previews/
+/var/www/html/occ config:app:set previewgenerator squareSizes --value="32 64 256 512"
+/var/www/html/occ config:app:set previewgenerator widthSizes  --value="256 384"
+/var/www/html/occ config:app:set previewgenerator heightSizes --value="256"
+
+
+/var/www/html/occ config:system:set preview_max_x --value 1024
+/var/www/html/occ config:system:set preview_max_y --value 1024
+/var/www/html/occ config:system:set jpeg_quality --value 60
+/var/www/html/occ config:app:set preview jpeg_quality --value="60"
+
+# Generate all the previews
+time /var/www/html/occ preview:generate-all
+```
+
+## Set a cron job to generate previews:
+
+[link](https://github.com/nextcloud/docker/issues/1775#issuecomment-1272609711)
+
+Or mount the spool file: https://davidhettler.net/blog/the-problematic-nextcloud-gallery/
+
+
+## Disable previews
+
+https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/previews_configuration.html#disabling-previews
+
 # Tips
 
-If the Desktop Nextcloud client will not upload images because of 413 error, delete the `.sync_*.db` files in the client sync directory: https://github.com/nextcloud/docker/issues/762#issuecomment-633149958
+If the Desktop Nextcloud client will not upload images because of "413 Request Entity Too Large" error, delete the `.sync_*.db` files in the client sync directory: https://github.com/nextcloud/docker/issues/762#issuecomment-633149958
+
+## Logging
+
+```sh
+cd pi-services && docker-compose logs -f
+
+journalctl --follow
+
+htop
+```
