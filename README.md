@@ -67,6 +67,11 @@ Or mount the spool file: https://davidhettler.net/blog/the-problematic-nextcloud
 
 https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/previews_configuration.html#disabling-previews
 
+
+## Photoprism
+
+Increase swap size to 2048 (that's enough for Photoprism) https://pimylifeup.com/raspberry-pi-swap-file/
+
 # Tips
 
 If the Desktop Nextcloud client will not upload images because of "413 Request Entity Too Large" error, delete the `.sync_*.db` files in the client sync directory: https://github.com/nextcloud/docker/issues/762#issuecomment-633149958
