@@ -5,7 +5,7 @@ services:
     image: postgres:14-alpine
     restart: always
     volumes:
-      - ${my_volumes_root}nextcloud_db:/var/lib/postgresql/data
+      - ${my_volumes_root}/nextcloud_db:/var/lib/postgresql/data
     env_file:
       - nextcloud-db.env
 
@@ -19,8 +19,8 @@ services:
     # ports:
     #   - 8080:80 # Just for debugging
     volumes:
-      - ${my_volumes_root}nextcloud_root:/var/www/html
-      - ${my_volumes_root}nextcloud_data:/var/www/html/data
+      - ${my_volumes_root}/nextcloud_root:/var/www/html
+      - ${my_volumes_root}/nextcloud_data:/var/www/html/data
     environment:
       - POSTGRES_HOST=db
       - REDIS_HOST=redis
@@ -52,7 +52,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ${my_volumes_root}certs:/etc/nginx/certs:ro
+      - ${my_volumes_root}/certs:/etc/nginx/certs:ro
       - vhost.d:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -70,7 +70,7 @@ services:
 #        gitcommithash: de2a9ae
 #    restart: "no"
 #    volumes:
-#      - ${my_volumes_root}certs:/certs
+#      - ${my_volumes_root}/certs:/certs
 #    environment:
 #      - SSL_SUBJECT=example.com
 #      - CA_SUBJECT=my@example.com
