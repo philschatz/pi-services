@@ -29,7 +29,7 @@ version: '3.5'
 services:
   photoprism:
     ## Use photoprism/photoprism:preview for testing preview builds:
-    image: photoprism/photoprism:latest
+    image: photoprism/photoprism:221105-armv7
     depends_on:
       - mariadb
     ## Don't enable automatic restarts until PhotoPrism has been properly configured and tested!
@@ -140,3 +140,17 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "~/.docker/config.json:/config.json" # optional, for authentication if you have a Docker Hub account
+
+
+  # http://cloud:8080/?server=mariadb&username=photoprism&db=photoprism
+  adminer:
+    image: adminer:latest
+    environment: 
+      ADMINER_DEFAULT_SERVER: mariadb
+      #ADMINER_DESIGN: galkaev
+    ports: 
+      - 8080:8080
+    # https://github.com/TimWolla/docker-adminer/issues/30
+    command: php -S 0.0.0.0:8080 -t /var/www/html
+    depends_on:
+      - mariadb
