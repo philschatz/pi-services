@@ -29,7 +29,7 @@ version: '3.5'
 services:
   photoprism:
     ## Use photoprism/photoprism:preview for testing preview builds:
-    image: photoprism/photoprism:221105-armv7
+    image: photoprism/photoprism:230514
     depends_on:
       - mariadb
     ## Don't enable automatic restarts until PhotoPrism has been properly configured and tested!
