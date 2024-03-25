@@ -12,7 +12,7 @@ services:
     restart: always
 
   app:
-    image: nextcloud:25-apache
+    image: nextcloud:27-apache
     restart: always
     # ports:
     #   - 8080:80 # Just for debugging
@@ -34,7 +34,7 @@ services:
       - redis
 
   # cron:
-  #   image: nextcloud:25-apache
+  #   image: nextcloud:27-apache
   #   restart: always
   #   volumes_from:
   #     - app
