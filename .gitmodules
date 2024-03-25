@@ -1,0 +1,3 @@
+[submodule "static/tiny-essay-editor"]
+	path = static/tiny-essay-editor
+	url = https://github.com/philschatz/tiny-essay-editor
