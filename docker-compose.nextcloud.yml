@@ -27,6 +27,7 @@ services:
       - NEXTCLOUD_ADMIN_USER=admin
       - NEXTCLOUD_ADMIN_PASSWORD=password
       # - OVERWRITEPROTOCOL=https
+      # - OVERWRITEWEBROOT=/nextcloud/
     env_file:
       - nextcloud-db.env
     depends_on:
