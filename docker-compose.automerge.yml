@@ -1,5 +1,6 @@
 services:
   automerge-sync-server2:
+    restart: unless-stopped
     build: ./automerge-sync-server
     volumes:
       - ${my_volumes_root}/automerge-sync-server-data/:/automerge-sync-server-data-dir/

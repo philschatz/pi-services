@@ -143,6 +143,7 @@ services:
   # http://cloud:8080/?server=mariadb&username=photoprism&db=photoprism
   adminer:
     image: adminer:latest
+    restart: unless-stopped
     environment: 
       ADMINER_DEFAULT_SERVER: mariadb
       #ADMINER_DESIGN: galkaev
