@@ -27,7 +27,7 @@
 services:
   photoprism:
     ## Use photoprism/photoprism:preview for testing preview builds:
-    image: photoprism/photoprism:231021
+    image: photoprism/photoprism:250426
     depends_on:
       - mariadb
     ## Don't enable automatic restarts until PhotoPrism has been properly configured and tested!
@@ -70,6 +70,7 @@ services:
       PHOTOPRISM_SITE_CAPTION: "AI-Powered Photos App"
       PHOTOPRISM_SITE_DESCRIPTION: ""                # meta site description
       PHOTOPRISM_SITE_AUTHOR: ""                     # meta site author
+      PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"       # for every 3 hours (leave empty to disable)
       ## Run/install on first startup (options: update https gpu tensorflow davfs clitools clean):
       # PHOTOPRISM_INIT: "https gpu tensorflow"
       ## Hardware Video Transcoding:
@@ -96,7 +97,9 @@ services:
     volumes:
       # "/host/folder:/photoprism/folder"                # Example
       # - "~/Pictures:/photoprism/originals"               # Original media files (DO NOT REMOVE)
-      - "${my_volumes_root}/nextcloud_data/admin:/photoprism/originals" 
+      # - "${my_volumes_root}/nextcloud_data/admin:/photoprism/originals" 
+      - "${my_volumes_root}/nextcloud_data/admin/files/photos:/photoprism/originals/files/photos"
+      - "${my_volumes_root}/sync-camera/Camera:/photoprism/originals/files/sync-camera/Camera"
       # - "/example/family:/photoprism/originals/family" # *Additional* media folders can be mounted like this
       # - "~/Import:/photoprism/import"                  # *Optional* base folder from which files can be imported to originals
       - "${my_volumes_root}/photoprism_storage:/photoprism/storage"                  # *Writable* storage folder for cache, database, and sidecar files (DO NOT REMOVE)
